@@ -16,7 +16,7 @@ function load_AssertionError() {
     var inner = Error(message);
     inner.name = name;
     return inner;
-  }
+  };
 }
 
 var AssertionManager;
@@ -25,9 +25,9 @@ function load_AssertionManager() {
    * Class for storing and throwing assertions
    * @constructor
    */
-  AssertionManager = function() {}
-  AssertionManager.prototype = {}
-  
+  AssertionManager = function() {};
+  AssertionManager.prototype = {};
+
   /**
    * Assert that a value is true.
    * @param value The value to check for truth.
@@ -37,8 +37,8 @@ function load_AssertionManager() {
   AssertionManager.prototype.assertTrue = function(value, message) {
     var test = value;
     if (!test) throw new AssertionError('AssertTrue', message || 'false');
-  }
-  
+  };
+
   /**
    * Assert that a value is false.
    * @param value The value to check for falsehood.
@@ -48,8 +48,8 @@ function load_AssertionManager() {
   AssertionManager.prototype.assertFalse = function(value, message) {
     var test = !value;
     if (!test) throw new AssertionError('AssertFalse', message || 'true');
-  }
-  
+  };
+
   /**
    * Assert that two objects are equal using Util.ObjectsEqual
    * @param a The first object.
@@ -60,8 +60,8 @@ function load_AssertionManager() {
   AssertionManager.prototype.assertEquals = function(a, b, message) {
     var test = ObjectsEqual(a, b);
     if (!test) throw new AssertionError('AssertEquals', message || (a + ', ' + b));
-  }
-  
+  };
+
   /**
    * Assert that two objects are not equal using Util.ObjectsEqual
    * @param a The first object.
@@ -72,8 +72,8 @@ function load_AssertionManager() {
   AssertionManager.prototype.assertNotEquals = function(a, b, message) {
     var test = !ObjectsEqual(a, b);
     if (!test) throw new AssertionError('AssertNotEquals', message || (a + ', ' + b));
-  }
-  
+  };
+
   /**
    * Assert that the first object is greater than the second.
    * @param a The first object.
@@ -84,8 +84,8 @@ function load_AssertionManager() {
   AssertionManager.prototype.assertGreater = function(a, b, message) {
     var test = a > b;
     if (!test) throw new AssertionError('AssertGreater', message || (a + ' > ' + b));
-  }
-  
+  };
+
   /**
    * Assert that the first object is less than the second.
    * @param a The first object.
@@ -96,8 +96,8 @@ function load_AssertionManager() {
   AssertionManager.prototype.assertLess = function(a, b, message) {
     var test = a < b;
     if (!test) throw new AssertionError('AssertLess', message || (a + ' < ' + b));
-  }
-  
+  };
+
   /**
    * Assert that an object is an instance of a class.
    * @param obj The object.
@@ -108,8 +108,8 @@ function load_AssertionManager() {
   AssertionManager.prototype.assertInstanceOf = function(obj, kls, message) {
     var test = obj instanceof kls;
     if (!test) throw new AssertionError('AssertInstanceOf', message || (obj + ' instanceof ' + kls));
-  }
-  
+  };
+
   /**
    * Assert that a closure raises a given error when executed.
    * @param {Function} closure The block of code to execute.
@@ -122,12 +122,12 @@ function load_AssertionManager() {
     try {
       closure.call(this);
     } catch(e) {
-      if (err.name == e.name && (err.message == '' || err.message == e.message)) {
+      if (err.name == e.name && (err.message === '' || err.message == e.message)) {
         test = true;
       } else {
         throw e;
       }
     }
     if (!test) throw new AssertionError('AssertRaises', message || err);
-  }
+  };
 }

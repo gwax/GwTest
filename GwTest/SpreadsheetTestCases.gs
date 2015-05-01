@@ -17,17 +17,17 @@ function load_SpreadsheetTestCase() {
     this.columns = columns || 10;
     this.spreadsheet = null;
     this.sheet = null;
-  }
+  };
   SpreadsheetTestCase.prototype = Object.create(FileTestCase.prototype);
   SpreadsheetTestCase.prototype.constructor = SpreadsheetTestCase;
-  
+
   /**
   * The TestCase's name
   * @constant
   * @override
   */
   SpreadsheetTestCase.prototype.name = 'SpreadsheetTestCase';
-  
+
   /**
   * Before all tests, create a spreadsheet and set the associated file for cleanup later.
   * @override
@@ -37,20 +37,20 @@ function load_SpreadsheetTestCase() {
     var sheetname = this.GetTestFilename();
     this.spreadsheet = SpreadsheetApp.create(sheetname, this.rows, this.columns);
     this.sheet = this.spreadsheet.getSheets()[0];
-    var file = DriveApp.getFileById(this.spreadsheet.getId())
+    var file = DriveApp.getFileById(this.spreadsheet.getId());
     this.AddFile(file);
-  }
-  
+  };
+
   /**
   * After all tests have finished, null out the spreadsheet.
   * @override
   */
   SpreadsheetTestCase.prototype.tearDownClass = function() {
     this.sheet = null;
-    this.spreadsheet = null;;
+    this.spreadsheet = null;
     FileTestCase.prototype.tearDownClass.call(this);
-  }
-  
+  };
+
   /**
   * Before each test, set the sheet variable and active sheet to the first sheet.
   * @override
@@ -59,8 +59,8 @@ function load_SpreadsheetTestCase() {
     FileTestCase.prototype.setUp.call(this);
     this.sheet = this.spreadsheet.getSheets()[0];
     this.spreadsheet.setActiveSheet(this.sheet);
-  }
-  
+  };
+
   /**
   * After each test, reset the spreadsheet's state to its initial conditions.
   * @override
@@ -70,13 +70,13 @@ function load_SpreadsheetTestCase() {
     for (var i=1; i < all_sheets.length; i++) {
       this.spreadsheet.deleteSheet(all_sheets[i]);
     }
-    this.sheet = all_sheets[0]
+    this.sheet = all_sheets[0];
     this.sheet.clear();
     this.sheet.setName('Sheet1');
     this.SetSheetSize(this.sheet, this.rows, this.columns);
     FileTestCase.prototype.tearDown.call(this);
-  }
-  
+  };
+
   /**
   * Resize a given sheet to the specified size; deleting or addings rows/columns as necessary.
   * @param {Sheet} sheet The sheet to resize.
@@ -91,7 +91,7 @@ function load_SpreadsheetTestCase() {
     } else if (max_rows < rows) {
       sheet.insertRowsAfter(max_rows, rows - max_rows);
     }
-    
+
     var max_columns = sheet.getMaxColumns();
     if (max_columns > columns) {
       sheet.deleteColumns(columns + 1, max_columns - columns);
@@ -99,5 +99,5 @@ function load_SpreadsheetTestCase() {
       sheet.insertColumnsAfter(max_columns, columns - max_columns);
     }
     return sheet;
-  }
+  };
 }

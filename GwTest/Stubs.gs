@@ -10,9 +10,9 @@ function load_StubsManager() {
    */
   StubsManager = function() {
     this.stubbed_attrs = [];
-  }
+  };
   StubsManager.prototype = {};
-  
+
   /**
    * Stub out a given attribute of a given object.
    * @param obj The object to set a stub for.
@@ -25,8 +25,8 @@ function load_StubsManager() {
     var orig = obj[attr];
     this.stubbed_attrs.unshift([obj, attr, orig]);
     obj[attr] = value;
-  }
-  
+  };
+
   /**
    * Return the given attribute of the object to its previous value.
    * @param obj The object with the set stub.
@@ -43,18 +43,18 @@ function load_StubsManager() {
       }
     }
     throw new Error('Object does not have stubbed property "' + attr + '"');
-  }
-  
+  };
+
   /**
    * Return all stubbed attributes to their previous values.
    */
   StubsManager.prototype.UnSetAll = function() {
     while (this.stubbed_attrs.length > 0) {
-      var stub = this.stubbed_attrs.shift()
+      var stub = this.stubbed_attrs.shift();
       var obj = stub[0];
       var attr = stub[1];
       var orig = stub[2];
       obj[attr] = orig;
     }
-  }
+  };
 }

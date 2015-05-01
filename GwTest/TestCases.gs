@@ -11,39 +11,39 @@ function load_TestCase() {
    */
   TestCase = function() {
     AssertionManager.call(this);
-  }
+  };
   TestCase.prototype = Object.create(AssertionManager.prototype);
   TestCase.prototype.constructor = TestCase;
-  
+
   /**
    * The TestCase's name
    * @constant
    */
   TestCase.prototype.name = 'TestCase';
-  
+
   /**
    * Code to be run before performing all tests.
    */
-  TestCase.prototype.setUpClass = function() {}
+  TestCase.prototype.setUpClass = function() {};
   /**
    * Code to be run after performing all tests.
    */
-  TestCase.prototype.tearDownClass = function () {}
+  TestCase.prototype.tearDownClass = function () {};
   /**
    * Code to be run before performing each test.
    */
-  TestCase.prototype.setUp = function() {}
+  TestCase.prototype.setUp = function() {};
   /**
    * Code to be run after performing each test.
    */
-  TestCase.prototype.tearDown = function() {}
-  
+  TestCase.prototype.tearDown = function() {};
+
   /**
    * Get the list of all methods in this object that start with 'test'.
    * @returns {string[]} List of all test method names.
    */
   TestCase.prototype.getAllTestNames = function() {
-    var test_functions = []
+    var test_functions = [];
     var obj = this;
     do {
       var properties = Object.getOwnPropertyNames(obj);
@@ -52,10 +52,11 @@ function load_TestCase() {
         if (name.slice(0, 4) != 'test') continue;
         test_functions.push(name);
       }
-    } while (obj = Object.getPrototypeOf(obj));
+      obj = Object.getPrototypeOf(obj);
+    } while (obj !== null);
     return test_functions;
-  }
-  
+  };
+
   /**
    * Run the test with a given name, logging success or failure to Logger.
    * @param {string} testname The name of the test method to run.
@@ -71,8 +72,8 @@ function load_TestCase() {
       Logger.log('%s: ERROR: %s(%s)%s', test_label, err.name, err.message, err.stack);
       return false;
     }
-  }
-  
+  };
+
   /**
    * Run tests for the test case, logging success or failure to the Logger.
    * @param {string|string[]} [testnames] The name(s) of specific tests to run; if not specified, all tests will be run.
@@ -84,22 +85,22 @@ function load_TestCase() {
     } else {
       testnames = this.getAllTestNames();
     }
-    
+
     var failing = [];
-    
+
     this.setUpClass();
     for(var i=0; i < testnames.length; i++) {
       this.setUp();
-      
+
       var testname = testnames[i];
       var passed = this.runTestMethod(testname);
       if (!passed) failing.push(testname);
-      
+
       this.tearDown();
     }
     this.tearDownClass();
-    
-    if (failing.length == 0) {
+
+    if (failing.length === 0) {
       Logger.log('%s: ALL TESTS PASSED', this.name);
     } else {
       var tests_run = testnames.length;
@@ -107,5 +108,5 @@ function load_TestCase() {
       Logger.log('%s: %s / %s PASSING', this.name, tests_passing.toString(), tests_run.toString());
     }
     return failing;
-  }
+  };
 }

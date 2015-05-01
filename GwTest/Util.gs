@@ -22,17 +22,17 @@ function load_ObjectsEqual() {
       if (VERBOSE_OBJECTS_EQUAL) Logger.log('Null comparison of %s === %s', a, b);
       return a === b;
     }
-    
+
     if (typeof a == 'undefined' || typeof b == 'undefined') {
       if (VERBOSE_OBJECTS_EQUAL) Logger.log('Undefined comparison of typeof %s == typeof %s', a, b);
       return typeof a == typeof b;
     }
-    
+
     if (typeof a != 'object' || typeof b != 'object') {
       if (VERBOSE_OBJECTS_EQUAL) Logger.log('Nonobject comparison of (%s)%s === (%s)%s', typeof a, a, typeof b, b);
       return a === b;
     }
-    
+
     if (Array.isArray(a) && Array.isArray(b)) {
       if (a.length != b.length) {
         if (VERBOSE_OBJECTS_EQUAL) Logger.log('Length mismatch of (%s).length == (%s).length', a, b);
@@ -44,7 +44,7 @@ function load_ObjectsEqual() {
       }
       return true;
     }
-    
+
     if (Object.getPrototypeOf(a) === Object.getPrototypeOf(b)) {
       if (a === b) return true;
       if (!ObjectsEqual(Object.keys(a), Object.keys(b)))
@@ -54,8 +54,8 @@ function load_ObjectsEqual() {
           return false;
       }
       return true;
-    }  
-    
+    }
+
     return false;
-  }
+  };
 }

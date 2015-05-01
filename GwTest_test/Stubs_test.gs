@@ -19,7 +19,7 @@ StubsManagerTest.prototype.testSet_Invalid = function() {
   this.assertRaises(function() {
     stubs.Set(obj, 'foo', 3);
   }, Error('Object has no property "foo"'));
-}
+};
 
 StubsManagerTest.prototype.testUnSet_Invalid = function() {
   // Setup
@@ -29,7 +29,7 @@ StubsManagerTest.prototype.testUnSet_Invalid = function() {
   this.assertRaises(function() {
     stubs.UnSet(obj, 'foo');
   }, Error('Object does not have stubbed property "foo"'));
-}
+};
 
 StubsManagerTest.prototype.testSet_Success = function() {
   // Setup
@@ -39,7 +39,7 @@ StubsManagerTest.prototype.testSet_Success = function() {
   stubs.Set(obj, 'a', 2);
   // Verify
   this.assertEquals(2, obj.a);
-}
+};
 
 StubsManagerTest.prototype.testUnSet_Success = function() {
   // Setup
@@ -50,7 +50,7 @@ StubsManagerTest.prototype.testUnSet_Success = function() {
   stubs.UnSet(obj, 'a');
   // Verify
   this.assertEquals(1, obj.a);
-}
+};
 
 StubsManagerTest.prototype.testUnsetOrdering = function() {
   // Setup
@@ -67,7 +67,7 @@ StubsManagerTest.prototype.testUnsetOrdering = function() {
   this.assertEquals(2, obj.a);
   stubs.UnSet(obj, 'a');
   this.assertEquals(1, obj.a);
-}
+};
 
 StubsManagerTest.prototype.testUnSetAll_Success = function() {
   // Setup
@@ -81,7 +81,7 @@ StubsManagerTest.prototype.testUnSetAll_Success = function() {
   // Verify
   this.assertEquals(1, obj1.a);
   this.assertEquals(3, obj2.c);
-}
+};
 
 StubsManagerTest.prototype.testAllWithObjects = function() {
   // Setup
@@ -108,4 +108,4 @@ StubsManagerTest.prototype.testAllWithObjects = function() {
   stubs.UnSetAll();
   this.assertEquals(3, obj1.getVal());
   this.assertEquals(3, obj2.getVal());
-}
+};
