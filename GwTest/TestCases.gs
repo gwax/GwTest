@@ -49,8 +49,9 @@ function load_TestCase() {
       var properties = Object.getOwnPropertyNames(obj);
       for (var i=0; i < properties.length; i++) {
         var name = properties[i];
-        if (name.slice(0, 4) != 'test') continue;
-        test_functions.push(name);
+        if (name.slice(0, 4) == 'test') {
+          test_functions.push(name);
+        }
       }
       obj = Object.getPrototypeOf(obj);
     } while (obj !== null);
