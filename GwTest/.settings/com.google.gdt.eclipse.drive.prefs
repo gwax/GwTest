@@ -21,5 +21,5 @@ driveScriptType.Stubs.gs=server_js
 driveScriptType.TestCases.gs=server_js
 driveScriptType.Util.gs=server_js
 driveScriptType._loader.gs=server_js
-driveVersionFingerprint=47024e02cf265a1ff8841cca97ea4469
+driveVersionFingerprint=cb0129e2f784b9928df1e9799810bf74
 eclipse.preferences.version=1
